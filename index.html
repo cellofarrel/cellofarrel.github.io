@@ -24,6 +24,21 @@
         <link href="css/aos.css" rel="stylesheet">
 
         <link href="css/props.css" rel="stylesheet">
+
+        <style>
+            .about-image-container {
+                background-image: url('images/personal.jpg');
+                background-size: cover;
+                background-position: center; /* Center the image by default */
+                height: 100%;
+            }
+            
+            @media (max-width: 768px) {
+                .about-image-container {
+                    background-position: top; /* Position the image at the top for smaller screens */
+                }
+            }
+        </style>
     </head>
     
     <body>
@@ -107,8 +122,8 @@
 
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-3 col-12 p-0">      
-                            <img src="images/personal.jpg" class="img-fluid about-image" alt="">
+                        <div class="col-lg-3 col-12 p-0">
+                            <div class="about-image-container"></div>
                         </div>
 
                         <div class="col-lg-3 col-12 bg-dark">  
