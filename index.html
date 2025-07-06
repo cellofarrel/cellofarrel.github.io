@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cello Farrel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontSize: {
+            base: '20px',
+          }
+        }
+      }
+    }
+  </script>
+
+</head>
+<body class="text-white font-sans text-lg sm:text-xl" style="background-image: url('./assets/hhh1.jpg'); background-size: cover; background-attachment: fixed; background-position: center;">
+
+<nav class="bg-white text-black shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center flex-wrap">
+        <div class="font-bold text-blue-600 text-xl">Cello Farrel</div>
+        
+        <button id="menu-toggle" class="md:hidden block text-black focus:outline-none">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
+        
+        <div id="menu" class="hidden md:flex md:items-center md:w-auto w-full">
+            <div class="md:flex md:space-x-6 mt-4 md:mt-0 text-center">
+                <a href="#hero" class="block md:inline-block hover:text-blue-500 py-2">Home</a>
+                <a href="#about" class="block md:inline-block hover:text-blue-500 py-2">About</a>
+                <a href="#projects" class="block md:inline-block hover:text-blue-500 py-2">Projects</a>
+                <a href="#experience" class="block md:inline-block hover:text-blue-500 py-2">Education and Experiences</a>
+                <a href="#download" class="block md:inline-block hover:text-blue-500 py-2">Downloads</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<section id="hero" class="h-screen flex items-center justify-center text-center px-4">
+  <div class="transform translate-y-40"> <h1 class="text-6xl sm:text-7xl font-extrabold mb-6 tracking-tight">Cello Farrel Tanojo</h1>
+    <p class="text-xl sm:text-2xl font-medium tracking-wide">Programmer, designer, creative thinker</p>
+  </div>
+</section>
+
+  <section id="about" class="bg-white text-black py-20 px-6 sm:px-16">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-5xl font-extrabold mb-10 tracking-wide">A creative thinker's journey through exploration</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-justify text-gray-700">
+        <p>A highly creative and technologically adept individual with nationally recognized certifications in graphic design, videography, photography, motion graphics, and 3D animation. Currently pursuing a computer science degree at a leading Indonesian private university, I am driven by a natural curiosity and a passion for innovation. I am also developing my skills and enthusiasm for public speaking, eager to share ideas and engage with diverse audiences.</p>
+        <p>I thrive on experiential learning, driven by a passion for hands-on exploration and discovery. Beyond traditional learning spaces, I immerse myself in diverse experiences across various forms of digital media and technology. Whether it's engaging with interactive storytelling, or discovering innovative design concepts, I believe in the power of learning by doing. These dynamic experiences not only fuel my creativity but also shape my approach to innovation and problem-solving.
+        </p>
+        <p>In collaborative environments, I thrive on pushing the boundaries of creativity and technology, constantly seeking new opportunities for growth and exploration. Beyond academics, I immerse myself in experimenting with cutting-edge creative tools and staying abreast of the latest trends in digital media. This multifaceted approach allows me to infuse my work with fresh perspectives and dynamic solutions.</p>
+        <p>My journey is characterized by an unwavering commitment to growth, creativity, and innovation. I eagerly anticipate the continuation of this journey and the opportunity to leave a lasting impact through my work. Thank you for taking the time to delve into my story, and I look forward to the exciting ventures that lie ahead!
+
+            .</p>
+      </div>
+    </div>
+  </section>
+
+<section id="projects" class="bg-gray-100 text-black py-28 px-8 sm:px-20">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16 items-center">
+
+      <div class="text-center">
+        <h3 class="text-5xl font-bold mb-2">Projects</h3>
+        <p class="text-xl text-gray-700">A showcase of my creative and technical works</p>
+      </div>
+
+      <div class="w-full">
+        <div class="flex flex-col gap-4 mb-6">
+          <div class="flex flex-col md:flex-row gap-4">
+            <img src="./assets/3H Trophies.png" alt="Healthy Habits Hero Home" class="md:w-1/3 w-full aspect-video object-contain  rounded-lg shadow-xl">
+            <img src="./assets/3H Speaker @America.png" alt="@America presenter pic" class="md:w-1/3 w-full aspect-video object-cover rounded-lg shadow-xl">
+            <img src="./assets/3H demo atam.png" alt="My showcase to @America audiences"
+   class="md:w-1/3 w-full aspect-video object-cover rounded-lg shadow-xl">
+          </div>
+          <h4 class="text-3xl font-semibold">Healthy Habits Hero</h4>
+          <p class="text-gray-700 text-lg">
+            Buana is an educational app created during my time at the Apple Developer Academy. It promotes sustainable living through gamified lessons and interactive challenges. My role included both design and development, emphasizing user experience, intuitive navigation, and meaningful content.
+          </p>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <div class="flex flex-col gap-4 mb-6">
+          <div class="flex flex-col md:flex-row gap-4">
+            <img src="./assets/buana.png" alt="Buana Cover" class="md:w-1/3 w-full rounded-lg shadow-xl">
+            <img src="./assets/buanaapp.png" alt="Buana UI" class="md:w-1/3 w-full rounded-lg shadow-xl">
+            <img src="./assets/buanateam.jpg" alt="Buana Team" class="md:w-1/3 w-full rounded-lg shadow-xl">
+          </div>
+          <h4 class="text-3xl font-semibold">Buana</h4>
+          <p class="text-gray-700 text-lg">
+            Buana is an educational app created during my time at the Apple Developer Academy. It promotes sustainable living through gamified lessons and interactive challenges. My role included both design and development, emphasizing user experience, intuitive navigation, and meaningful content.
+          </p>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <div class="flex flex-col gap-4 mb-6">
+          <div class="flex flex-col md:flex-row gap-4">
+            <img src="./assets/Betterstudy Pomodoro.png" alt="Motion Still 1" class="md:w-1/3 w-full rounded-lg shadow-xl">
+            <img src="./assets/Betterstudy Home.png" alt="Motion Still 2" class="md:w-1/3 w-full rounded-lg shadow-xl">
+            <img src="./assets/Betterstudy Affirmation.png" alt="Motion Still 3" class="md:w-1/3 w-full rounded-lg shadow-xl">
+          </div>
+          <h4 class="text-3xl font-semibold">BetterStudy</h4>
+          <p class="text-gray-700 text-lg">
+            BetterStudy is an app designed to bridge the gap between mental health and academic performance. Developed as a solution to the limitations of traditional study aids, BetterStudy offers an approach that combines study strategies with mental health support. My role in the project involved both design and development, focusing on creating a user-friendly experience, seamless navigation, and content that addresses both well-being and academic success.
+          </p>
+        </div>
+      </div>
+
+        <div class="w-full">
+                      <div class="flex flex-col gap-4 mb-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                          <img src="./assets/Muemo Login.png" alt="Motion Still 1" class="md:w-1/3 w-full rounded-lg shadow-xl">
+                          <img src="./assets/Muemo Demo Happy.png" alt="Motion Still 2" class="md:w-1/3 w-full rounded-lg shadow-xl">
+                          <img src="./assets/Muemo Preference.png" alt="Motion Still 3" class="md:w-1/3 w-full rounded-lg shadow-xl">
+                        </div>
+                        <h4 class="text-3xl font-semibold">Muemo</h4>
+                        <p class="text-gray-700 text-lg">
+                          Muemo is a web app made by my team that recommends music based on a user's emotional state, utilizing Deepface for a deeply personal listening experience. our team created Muemo with an emphasis on user privacy, offering camera toggle and distinct tracking modes, alongside customizable preferences. This project was a significant learning experience in designing with empathy, balancing technical complexity (like emotion detection) with real-world sensitivity, and creating an adaptive and respectful user experience.
+                        </p>
+                      </div>
+                  </div>
+
+
+    <div class="w-full">
+      <div class="flex flex-col gap-4 mb-6">
+        <div class="flex flex-col md:flex-row gap-4">
+          <img src="./assets/PennyPlanner Overview.png" alt="Motion Still 1" class="md:w-1/3 w-full rounded-lg shadow-xl">
+          <img src="./assets/PennyPlanner UI.png" alt="Motion Still 2" class="md:w-1/3 w-full rounded-lg shadow-xl">
+          <img src="./assets/PennyPlanner Home.png" alt="Motion Still 3" class="md:w-1/3 w-full rounded-lg shadow-xl">
+        </div>
+        <h4 class="text-3xl font-semibold">PennyPlanner</h4>
+        <p class="text-gray-700 text-lg">
+          PennyPlanner is a financial management smartphone application concept, designed to address challenges of traditional money management. It simplifies budgeting, expense tracking, and goal setting with features like automatic categorization and robust encryption for data security. This project highlights my skills in UI/UX design, demonstrating my ability to create tools that empower users to manage their finances effectively and plan for a secure future.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="experience" class="bg-white text-black py-20 px-6 sm:px-16">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+
+      <div>
+        <h2 class="text-5xl font-extrabold mb-10 tracking-wide">Experiences</h2>
+        <div class="space-y-10">
+          <div>
+            <p class="text-sm text-gray-1000">2024–2025</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Freshmen Partner + Freshmen Leader</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">Binus University</p>
+            <p class="text-gray-700">
+              Produced and led orientation and mentorship programs, supporting new students’ academic and social adjustment.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-1000">2023</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Programmer + Designer</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">Apple Developer Academy</p>
+            <p class="text-gray-700">
+              Immersed in mobile programming and design through the iOS Foundation Program. Honed skills in Swift and crafted user-centric apps. Embraced challenges with creativity, preparing to shape the future of mobile tech.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-1000">2023</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Creative Professional</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">Badan Nasional Sertifikasi Profesi</p>
+            <p class="text-gray-700">
+              Certified in design, editing, photography, videography, and animation. This milestone highlights my dedication to creative excellence and readiness to contribute across diverse media projects.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-1000">2022–2023</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Movie Producer + Writer</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">Lux Documentary</p>
+            <p class="text-gray-700">
+              Produced and wrote a film exploring Indonesia’s path to electric vehicle adoption. Blended storytelling and sustainability, bringing awareness to the future of clean transportation.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-1000">2022</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Graphic Designer</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">PT Investor Nilai Indonesia</p>
+            <p class="text-gray-700">
+              Designed visual content and branding materials for investment outreach. Contributed to professional communication through creative design work.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-1000">2020–2022</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Video Editor</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">Lions Club International</p>
+            <p class="text-gray-700">
+              Volunteered to create impactful content on global health issues such as cancer, diabetes, and vision impairment. Contributed to meaningful causes by inspiring action through visual storytelling.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-5xl font-extrabold mb-10 tracking-wide">Educations</h2>
+        <div class="space-y-10">
+          <div>
+            <p class="text-sm text-gray-1000">2023–2027</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Computer Science</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">Binus University</p>
+            <p class="text-gray-700">
+              Pursuing a degree in Computer Science. Learning problem-solving, programming, and innovation alongside a vibrant academic community. Preparing for a future where tech drives real-world solutions.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-1000">2024</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Scholarship Holder</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">Samsung Innovation Campus</p>
+            <p class="text-gray-700">
+              Ranked top 3% of participants in a elimination based program about IoT, Ai, data structures, and python
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-1000">2020–2023</p>
+            <h4 class="text-2xl font-semibold mt-4 mb-1">Multimedia</h4>
+            <p class="text-md font-medium text-gray-800 mb-2">Global Multimedia Creative</p>
+            <p class="text-gray-700">
+              Specialized in 3D design, video editing, photography, motion graphics, and game development. Gained a versatile digital media skill set, driven by hands-on learning and creative exploration.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-16 border-t border-gray-300">
+            <h2 class="text-5xl font-extrabold mb-10 tracking-wide">Achievements</h2>
+            <div class="space-y-10">
+              <div>
+                <p class="text-sm text-gray-1000">2025</p>
+                <h4 class="text-2xl font-semibold mt-4 mb-1">Apple Developer Academy @University Of Naples</h4>
+                <p class="text-md font-medium text-gray-800 mb-2"></p>
+                <p class="text-gray-700">
+                  The Youngest apple program participant to get perfect score for the <a href="https://www.developeracademy.unina.it/wp-content/uploads/call_25_26_apparticipants_ranking_proper.pdf" class="text-blue-600 hover:underline" target="_blank">Apple Developer Academy Naples entry test</a>.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-1000">2025</p>
+              <h4 class="text-2xl font-semibold mt-4 mb-1">@America</h4>
+              <p class="text-md font-medium text-gray-800 mb-2"></p>
+              <p class="text-gray-700">
+                Selected as a speaker at @America for  <a href="https://www.youtube.com/live/lFr609f2Spo?si=DiVH8Ys1YRn80ysT&t=4878"class="text-blue-600 hover:underline" target="_blank"> @america: Interactive App Development” event</a>.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="download" class="bg-gradient-to-br from-purple-900 via-pink-700 to-orange-500 text-white py-20 px-6 sm:px-16 text-center">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-5xl font-extrabold mb-8 tracking-wide">Download My Work</h2>
+        <p class="text-xl mb-12">Access my CV for a detailed overview of my experience and my portfolio for visual examples of my projects.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="./assets/cv.pdf" download="Cello_Farrel_CV.pdf" class="bg-white text-purple-800 font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">
+                <i class="fas fa-file-download mr-3"></i> Download CV
+            </a>
+            <a href="#projects" class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                <i class="fas fa-eye mr-3"></i> View Portfolio
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-black text-white py-16 px-6 sm:px-24">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+
+      <div class="space-y-4">
+        <h1 class="text-3xl font-extrabold">Cello Farrel</h1>
+        <p class="text-lg">cellofarrel@gmail.com</p>
+        <p class="text-sm text-gray-400">© 2025 Cello Farrel Tanojo. All rights reserved.</p>
+      </div>
+
+      <div class="flex space-x-6 text-2xl text-gray-400">
+        <a href="https://wa.me/+6281910008891" target="_blank" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp hover:text-white transition"></i>
+        </a>
+        <a href="https://instagram.com/cellofarrel" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram hover:text-white transition"></i>
+        </a>
+        <a href="https://linkedin.com/in/cello-farrel" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin hover:text-white transition"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+</script>
+
+</body>
+</html>
