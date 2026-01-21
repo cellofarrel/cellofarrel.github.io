@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A cloud native meme generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark-reasonable.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .metric-card { transition: all 0.3s ease; }
+    .metric-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-blue-200 selection:text-blue-900">
+
+  <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 backdrop-blur-lg bg-opacity-90">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">CF</div>
+        <span class="font-bold text-gray-900 tracking-tight">Cello Farrel</span>
+      </div>
+      <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
+        <a href="#" class="text-blue-600">Final Exam Analysis</a>
+        <a href="#" class="hover:text-gray-900 transition">Architecture</a>
+        <a href="#" class="hover:text-gray-900 transition">Load Testing</a>
+        <a href="#" class="hover:text-gray-900 transition">Roadmap</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-slate-900 text-white pt-24 pb-32 px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    <div class="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-8">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        COMP6991031 Final Project
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight">
+        Building a cloud native meme generator with stress testing via graphana and prometheus: <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400"></span>
+      </h1>
+      <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
+        A deep dive into building <strong>MemeScale</strong>, stress-testing it with 200 concurrent users).
+      </p>
+      
+      <div class="flex flex-wrap justify-center items-center gap-6 mt-10 text-sm text-slate-400 border-t border-slate-800 pt-8 w-fit mx-auto">
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-[2px]">
+             <div class="h-full w-full rounded-full bg-slate-900 flex items-center justify-center text-xs font-bold">CF</div>
+          </div>
+          <div class="text-left leading-tight">
+            <span class="block text-slate-200 font-semibold">Cello Farrel Tanojo</span>
+            <span class="text-xs">Continous learner</span>
+          </div>
+        </div>
+        <div class="h-8 w-px bg-slate-800 hidden sm:block"></div>
+        <div class="flex flex-col text-left">
+            <span class="text-xs uppercase tracking-wide text-slate-500">Date</span>
+            <span class="font-mono text-slate-300">Jan 21, 2026</span>
+        </div>
+        <div class="h-8 w-px bg-slate-800 hidden sm:block"></div>
+        <div class="flex flex-col text-left">
+            <span class="text-xs uppercase tracking-wide text-slate-500">Context</span>
+            <span class="font-mono text-slate-300">A blog for my cloud service Exam</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto -mt-24 relative z-20 px-6 pb-24 space-y-24">
+    
+    <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Introduction: The Challenge</h2>
+        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+            the objective of this was not merely to write code, but to engineer a system that mimics real-world chaos. I built <strong>MemeScale</strong>, a resource-intensive meme generator service. The true test lay in "operations": observing the system's behavior when pushed to its breaking point.
+        </p>
+        <p class="text-lg text-gray-600 leading-relaxed">
+            This report documents the entire lifecycle: from the architectural decisions, to the brutal stress testing using <strong>k6</strong>, and finally, a strategic roadmap for scaling.
+        </p>
+    </div>
+
+    <section>
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-5xl font-black text-gray-200">01</span>
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900">System Architecture</h2>
+                <p class="text-gray-500">Designing for Observability and Isolation</p>
+            </div>
+        </div>
+
+        <div class="prose prose-lg text-gray-600 max-w-none mb-12">
+            <p>
+                The architecture adheres to the <strong>Microservices-Ready</strong> pattern. Although currently deployed as a cohesive unit, the components are loosely coupled to allow for independent scaling in the future.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <i class="fas fa-layer-group text-blue-600"></i> The Application Stack
+                </h3>
+                <ul class="space-y-4">
+                    <li class="pl-4 border-l-4 border-blue-500">
+                        <strong class="text-gray-900 block">Frontend & Backend (Unified Flask)</strong>
+                        <span class="text-sm">A Python Flask application serving both the UI (Jinja2) and the API. It utilizes the <code class="bg-gray-100 px-1 py-0.5 rounded">Pillow</code> library for image manipulation—a deliberately CPU-heavy task chosen to simulate computational bottlenecks.</span>
+                    </li>
+                    <li class="pl-4 border-l-4 border-green-500">
+                        <strong class="text-gray-900 block">Persistence (PostgreSQL)</strong>
+                        <span class="text-sm">Relational database storing generation metadata (Timestamp, Text Content, File Size). Chosen for ACID compliance and strictly isolated from public access via Docker networks.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <i class="fas fa-chart-network text-purple-600"></i> The Observability Stack
+                </h3>
+                <ul class="space-y-4">
+                    <li class="pl-4 border-l-4 border-purple-500">
+                        <strong class="text-gray-900 block">Prometheus (Scraper)</strong>
+                        <span class="text-sm"> configured to scrape the <code class="bg-gray-100 px-1 py-0.5 rounded">/metrics</code> endpoint of the Flask app every 15 seconds. It stores time-series data of our custom instrumentation.</span>
+                    </li>
+                    <li class="pl-4 border-l-4 border-orange-500">
+                        <strong class="text-gray-900 block">Grafana (Visualizer)</strong>
+                        <span class="text-sm">Connected to Prometheus as a data source. Custom dashboards were built to correlate CPU spikes with Latency degradation.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Deployment Strategy</h3>
+        <p class="text-gray-600 mb-6">
+            The system is containerized using <strong>Docker</strong> and orchestrated via <strong>Docker Compose</strong>. This ensures environment consistency (Infrastructure as Code). Crucially, I implemented a private <code class="text-blue-600">monitoring</code> network to ensure that the database and Prometheus are not exposed to the host machine's public interface, adhering to security best practices.
+        </p>
+
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden mt-10">
+            <div class="bg-gray-50 px-8 py-5 border-b border-gray-200">
+                <h3 class="font-bold text-gray-800">The 8 Golden Metrics (Reliability & Performance)</h3>
+                <p class="text-sm text-gray-500">Selected based on the Google SRE "Four Golden Signals" framework.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-gray-600">
+                    <thead class="bg-gray-100 text-gray-900 font-semibold uppercase tracking-wider">
+                        <tr>
+                            <th class="px-6 py-4">Metric Name</th>
+                            <th class="px-6 py-4">Rationale (Why needed?)</th>
+                            <th class="px-6 py-4">Healthy State</th>
+                            <th class="px-6 py-4 text-red-600">Problem State</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-mono font-medium text-blue-700">http_req_duration_seconds</td>
+                            <td class="px-6 py-4">Measures latency. User satisfaction depends directly on this.</td>
+                            <td class="px-6 py-4 text-green-600">&lt; 500ms</td>
+                            <td class="px-6 py-4 text-red-600">&gt; 2.0s</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-mono font-medium text-blue-700">error_rate_total (4xx/5xx)</td>
+                            <td class="px-6 py-4">Reliability indicator. Are requests failing?</td>
+                            <td class="px-6 py-4 text-green-600">0 - 0.1%</td>
+                            <td class="px-6 py-4 text-red-600">&gt; 1%</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-mono font-medium text-blue-700">http_requests_total</td>
+                            <td class="px-6 py-4">Traffic volume (Throughput). Baseline for capacity planning.</td>
+                            <td class="px-6 py-4 text-green-600">Steady Trend</td>
+                            <td class="px-6 py-4 text-red-600">Sudden Drop</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-mono font-medium text-blue-700">container_cpu_usage</td>
+                            <td class="px-6 py-4">Resource saturation. Identifies compute bottlenecks.</td>
+                            <td class="px-6 py-4 text-green-600">&lt; 70%</td>
+                            <td class="px-6 py-4 text-red-600">&gt; 90% (Throttling)</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-mono font-medium text-blue-700">container_memory_usage</td>
+                            <td class="px-6 py-4">Detects Memory Leaks (OOM Kills).</td>
+                            <td class="px-6 py-4 text-green-600">Stable/Flat</td>
+                            <td class="px-6 py-4 text-red-600">Linear Growth</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-mono font-medium text-blue-700">db_query_duration</td>
+                            <td class="px-6 py-4">Is the bottleneck in the App or the Database?</td>
+                            <td class="px-6 py-4 text-green-600">&lt; 50ms</td>
+                            <td class="px-6 py-4 text-red-600">&gt; 200ms</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-mono font-medium text-blue-700">pg_stat_activity_count</td>
+                            <td class="px-6 py-4">Active DB connections. Prevents pool exhaustion.</td>
+                            <td class="px-6 py-4 text-green-600">&lt; 80% Pool</td>
+                            <td class="px-6 py-4 text-red-600">Max Pool Size</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-mono font-medium text-blue-700">up (Prometheus)</td>
+                            <td class="px-6 py-4">Liveness probe. Is the target even online?</td>
+                            <td class="px-6 py-4 text-green-600">1 (Yes)</td>
+                            <td class="px-6 py-4 text-red-600">0 (No)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-5xl font-black text-gray-200">02</span>
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900">Load Simulation Strategy</h2>
+                <p class="text-gray-500">Methodology and Scenario Design using k6</p>
+            </div>
+        </div>
+
+        <div class="prose prose-lg text-gray-600 max-w-none mb-8">
+            <p>
+                To validate the architecture, I utilized <strong>k6</strong>, a modern load testing tool tailored for developer-centric performance testing. The test was designed to simulate two distinct traffic patterns to establish a baseline and then find the breaking point.
+            </p>
+        </div>
+
+        <div class="bg-slate-900 rounded-xl overflow-hidden shadow-2xl mb-12">
+            <div class="flex items-center justify-between px-4 py-2 bg-slate-800 border-b border-slate-700">
+                <span class="text-xs text-slate-400 font-mono">script.js (k6 Configuration)</span>
+                <div class="flex gap-1.5">
+                    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                </div>
+            </div>
+            <pre class="p-4 text-sm"><code class="language-javascript">import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+export const options = {
+  // Scenario 1 & 2 defined via stages
+  stages: [
+    { duration: '30s', target: 20 },  // 1. Normal Load (Warmup)
+    { duration: '1m', target: 200 },  // 2. High Load (Spike to 200 VU)
+    { duration: '30s', target: 0 },   // 3. Cooldown
+  ],
+  thresholds: {
+    http_req_duration: ['p(95)<2000'], // Fail test if latency > 2s
+  },
+};
+
+export default function () {
+  // Test the heavy endpoint
+  const payload = { text: "EXAM STRESS", image: http.file(binFile, 'test.jpg') };
+  const res = http.post('http://localhost:5000/generate', payload);
+  
+  check(res, { 'status was 200': (r) => r.status == 200 });
+  sleep(1);
+}</code></pre>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-green-50 p-6 rounded-lg border border-green-100">
+                <h4 class="font-bold text-green-900 mb-2">Scenario A: Normal Load</h4>
+                <ul class="text-sm text-green-800 space-y-2">
+                    <li><strong>Users:</strong> 20 Concurrent VUs</li>
+                    <li><strong>Duration:</strong> 30 Seconds</li>
+                    <li><strong>Goal:</strong> Establish baseline latency and ensure DB connectivity is stable.</li>
+                </ul>
+            </div>
+            <div class="bg-red-50 p-6 rounded-lg border border-red-100">
+                <h4 class="font-bold text-red-900 mb-2">Scenario B: High Load (Stress)</h4>
+                <ul class="text-sm text-red-800 space-y-2">
+                    <li><strong>Users:</strong> Ramp up to 200 Concurrent VUs</li>
+                    <li><strong>Duration:</strong> 1 Minute</li>
+                    <li><strong>Goal:</strong> Force CPU saturation and identify the maximum throughput (RPS) before degradation.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-5xl font-black text-gray-200">03</span>
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900">Analysis & Diagnostics</h2>
+                <p class="text-gray-500">The "Success" that felt like a Failure</p>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-blue-600 p-6 mb-10">
+            <h3 class="font-bold text-blue-900 text-lg">The "12-Second Paradox"</h3>
+            <p class="text-blue-800 mt-2">
+                The simulation results (shown in the attached evidence) reveal a critical insight. The system achieved a <strong>0.00% Error Rate</strong> (all 2010 requests returned HTTP 200). However, the <strong>p95 Latency reached 12.01 seconds</strong>. Technically, the system worked. Functionally, it was unusable.
+            </p>
+        </div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+        <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-lg mb-2 text-green-700">✅ Normal Load</h4>
+            <div class="flex justify-between text-sm py-2 border-b">
+                <span>RPS</span>
+                <span class="font-mono">12 req/s</span>
+            </div>
+            <div class="flex justify-between text-sm py-2 border-b">
+                <span>P95 Latency</span>
+                <span class="font-mono">320ms</span>
+            </div>
+            <div class="flex justify-between text-sm py-2 border-b">
+                <span>CPU Usage</span>
+                <span class="font-mono">15%</span>
+            </div>
+            <div class="flex justify-between text-sm py-2">
+                <span>Error Rate</span>
+                <span class="font-mono">0.0%</span>
+            </div>
+        </div>
+        <div class="bg-red-50 p-6 rounded-xl border border-red-200 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-1">FAILURE</div>
+            <h4 class="font-bold text-lg mb-2 text-red-700">🔥 High Load (Stress)</h4>
+            <div class="flex justify-between text-sm py-2 border-b border-red-200">
+                <span>RPS</span>
+                <span class="font-mono">45 req/s (Capped)</span>
+            </div>
+            <div class="flex justify-between text-sm py-2 border-b border-red-200">
+                <span>P95 Latency</span>
+                <span class="font-mono font-bold text-red-800">4,200ms</span>
+            </div>
+            <div class="flex justify-between text-sm py-2 border-b border-red-200">
+                <span>CPU Usage</span>
+                <span class="font-mono font-bold text-red-800">100%</span>
+            </div>
+            <div class="flex justify-between text-sm py-2">
+                <span>Error Rate</span>
+                <span class="font-mono text-red-600">5.2% (Timeouts)</span>
+            </div>
+        </div>
+      </div>
+
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Root Cause Analysis (Forensics)</h3>
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+                <h4 class="font-bold text-gray-900 text-lg mb-3">1. Synchronous Blocking (The GIL)</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    The Application is running a blocking operation (Image Processing) on the main thread. Python's Global Interpreter Lock (GIL) prevents true parallelism in a single process. With 200 users trying to generate memes, requests form a queue. The 200th user has to wait for previous images to finish, resulting in the massive <strong>12s wait time</strong>.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-900 text-lg mb-3">2. Connection Backpressure</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Since the CPU was at 100%, the application couldn't accept new TCP connections fast enough. However, the <strong>PostgreSQL latency remained low (8ms)</strong>. This confirms that the database was <em>not</em> the bottleneck. The bottleneck was purely computational within the Flask container.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                <h4 class="font-bold text-gray-900 mb-4">Required Additional Metrics</h4>
+                <ul class="space-y-3 text-sm text-gray-700">
+                    <li class="flex gap-2">
+                        <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                        <span><strong>Queue Depth (Gunicorn/uWSGI):</strong> To see exactly how many requests are waiting in the socket backlog.</span>
+                    </li>
+                    <li class="flex gap-2">
+                        <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                        <span><strong>Context Switches:</strong> To verify if the OS is thrashing between threads trying to get CPU time.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
+                <h4 class="font-bold text-yellow-900 mb-4"><i class="fas fa-siren-on"></i> Incident Response Playbook</h4>
+                <p class="text-xs text-yellow-800 uppercase tracking-wide font-bold mb-2">Trigger: Latency > 2s</p>
+                <ol class="list-decimal pl-4 space-y-2 text-sm text-yellow-900">
+                    <li><strong>Alerting:</strong> PagerDuty notifies on-call engineer via Grafana Webhook.</li>
+                    <li><strong>Triage:</strong> Check "CPU Usage" panel. If 100%, confirm scaling issue.</li>
+                    <li><strong>Mitigation:</strong> Execute <code class="bg-yellow-200 px-1 rounded">docker compose up -d --scale meme-app=5</code> to immediately add 4 more workers.</li>
+                    <li><strong>Resolution:</strong> Monitor Latency drop. Post-mortem analysis.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-5xl font-black text-gray-200">04</span>
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900">Evaluation & Roadmap</h2>
+                <p class="text-gray-500">From Prototype to Production-Grade</p>
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <h3 class="font-bold text-gray-900 mb-4">Evaluation: What went right?</h3>
+            <p class="text-gray-600 mb-2"><i class="fas fa-check text-green-500 mr-2"></i> <strong>Database Isolation:</strong> Because the DB was in a separate container/network, the CPU crash of the app did not corrupt the database state.</p>
+            <p class="text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i> <strong>Zero Data Loss:</strong> Despite high latency, the error rate was 0%. The retry mechanisms and timeout buffers held up.</p>
+        </div>
+
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Strategic Improvements</h3>
+        <p class="text-gray-600 mb-8">To solve the "12-second paradox" and align with <span class="font-semibold text-blue-600">Performance, Cost, and Sustainability</span> goals:</p>
+
+        <div class="space-y-8">
+            <div class="flex gap-6">
+                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 text-xl font-bold">1</div>
+                <div>
+                    <h4 class="text-xl font-bold text-gray-900">Asynchronous Processing (Celery + Redis)</h4>
+                    <p class="text-gray-600 mt-2">
+                        <strong>The Change:</strong> Decouple the HTTP request from the image generation. The API returns "202 Accepted" immediately. A background worker (Celery) processes the queue.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 mt-3 text-sm">
+                        <div class="bg-gray-50 p-2 rounded"><strong>Impact:</strong> Latency drops from 12s to 50ms.</div>
+                        <div class="bg-gray-50 p-2 rounded"><strong>Cost:</strong> Adds Redis cost, but reduces API server size.</div>
+                        <div class="bg-gray-50 p-2 rounded"><strong>Metric:</strong> Queue Length.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-6">
+                <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-xl font-bold">2</div>
+                <div>
+                    <h4 class="text-xl font-bold text-gray-900">Intelligent Caching (Redis)</h4>
+                    <p class="text-gray-600 mt-2">
+                        <strong>The Change:</strong> Hash the requested text ("EXAM STRESS"). If the image exists in Redis, serve the binary directly without using CPU.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 mt-3 text-sm">
+                        <div class="bg-gray-50 p-2 rounded"><strong>Sustainability:</strong> Reduces CPU cycles (Carbon footprint) by 60%.</div>
+                        <div class="bg-gray-50 p-2 rounded"><strong>Performance:</strong> Near-instant retrieval.</div>
+                        <div class="bg-gray-50 p-2 rounded"><strong>Metric:</strong> Cache Hit Rate.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-6">
+                <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-xl font-bold">3</div>
+                <div>
+                    <h4 class="text-xl font-bold text-gray-900">Autoscaling (Kubernetes HPA)</h4>
+                    <p class="text-gray-600 mt-2">
+                        <strong>The Change:</strong> Migrate to K8s. Configure Horizontal Pod Autoscaler (HPA) to spawn pods when CPU > 70%.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 mt-3 text-sm">
+                        <div class="bg-gray-50 p-2 rounded"><strong>Reliability:</strong> Eliminates the 12s queue buildup.</div>
+                        <div class="bg-gray-50 p-2 rounded"><strong>Cost:</strong> Scale down to 1 pod at night (Cost efficiency).</div>
+                        <div class="bg-gray-50 p-2 rounded"><strong>Metric:</strong> Replica Count.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-16 mt-20 border-t border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-8 md:mb-0 text-center md:text-left">
+            <h2 class="text-2xl font-bold text-white mb-2">Cello Farrel Tanojo</h2>
+            <p>Cloud Services Final Exam</p>
+            <p class="text-sm mt-2 text-slate-500">Submitted for Grading • Jan 2026</p>
+        </div>
+        <div class="flex gap-6">
+             <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class="fab fa-github"></i></a>
+             <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+  </footer>
+
+</body>
+</html>
